@@ -3,12 +3,18 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>Tags</th>
     <th>Text</th>
     <th></th>
   </tr>
   <% @articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
+      <td>
+        <% article.show_tags.each do |tag|%>
+          <%= link_to tag.name, tag_path(tag) %>
+        <% end %>
+      </td>
       <td><%= article.text %></td>
       <td><%= link_to "Show", article_path(article) %></td>
       <td><%= link_to "Edit", edit_article_path(article) %></td>

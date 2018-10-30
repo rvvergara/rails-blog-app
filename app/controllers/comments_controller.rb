@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  http_basic_authenticate_with name: "kobe", password: "goat",
+  only: :destroy
   def show
     @comment = @article.comments.all
   end

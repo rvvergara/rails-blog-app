@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+  
+  http_basic_authenticate_with name: "lebron", password: "goat", except: [:index, :show]
+
   def index
     @articles = Article.all
   end
@@ -13,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    @tags = @article.tags
   end
 
   def create
@@ -44,6 +48,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :tag_list)
   end
 end
